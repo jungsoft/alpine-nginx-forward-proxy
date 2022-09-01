@@ -2,6 +2,10 @@ FROM alpine:3.16
 
 ENV NGINX_VERSION 1.23.1
 
+RUN apk update && apk add curl gettext bash
+RUN apk add --virtual nginx \
+      alpine-sdk openssl-dev pcre-dev zlib-dev tinyproxy git patch
+
 WORKDIR /tmp
 
 RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O                                             && \
@@ -16,5 +20,7 @@ RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O        
     make -j $(nproc)                                                                                                 && \
     make install                                                                                                     && \
     rm -rf /tmp/*
+
+RUN apk del nginx
 
 WORKDIR /
