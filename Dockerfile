@@ -21,6 +21,6 @@ RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O        
     make install                                                                                                     && \
     rm -rf /tmp/*
 
-RUN apk del nginx
+# RUN apk del nginx
 
 WORKDIR /
