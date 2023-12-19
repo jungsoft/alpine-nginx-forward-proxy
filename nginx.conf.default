@@ -1,0 +1,42 @@
+worker_processes 1;
+
+events {
+  worker_connections 1024;
+}
+
+http {
+  include mime.types;
+
+  map $http_user_agent $log_ua {
+      ~healthcheck 0;
+
+      default 1;
+  }
+
+  server {
+    listen 8080;
+
+    allow 10.0.0.0/8;
+    deny  all;
+
+    access_log /var/log/proxy_access.log combined if=$log_ua;
+    access_log /dev/stdout;
+    error_log  /dev/stderr;
+
+    resolver 1.1.1.1 ipv6=off;
+
+    proxy_connect;
+    proxy_connect_allow           443 563;
+    proxy_connect_connect_timeout 60s;
+    proxy_connect_read_timeout    60s;
+    proxy_connect_send_timeout    60s;
+
+    location / {
+      client_max_body_size 0;
+      proxy_http_version 1.1;
+      proxy_set_header Host $host;
+
+      proxy_pass http://$host;
+    }
+  }
+}

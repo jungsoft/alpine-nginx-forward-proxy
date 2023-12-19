@@ -1,6 +1,6 @@
 FROM alpine:3.16
 
-ENV NGINX_VERSION 1.23.1
+ENV NGINX_VERSION 1.25.3
 
 RUN apk update && apk add curl gettext bash
 RUN apk add --virtual nginx \
@@ -23,4 +23,8 @@ RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O        
 
 # RUN apk del nginx
 
+COPY nginx.conf.default /usr/local/nginx/conf/nginx.conf
+
 WORKDIR /
+
+CMD ["nginx", "-g", "daemon off;"]

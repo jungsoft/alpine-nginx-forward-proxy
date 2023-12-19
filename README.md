@@ -8,4 +8,4 @@ This docker image was created to have nginx running in alpine, with ngx_http_pro
 
 This image was built using
 
-`docker build --platform linux/amd64,linux/arm64 . --tag jungsoft/alpine-nginx-forward-proxy --tag jungsoft/alpine-nginx-forward-proxy:1.23.1 --push`
+`docker build --platform linux/amd64,linux/arm64 . --tag jungsoft/alpine-nginx-forward-proxy --tag jungsoft/alpine-nginx-forward-proxy:1.25.3 --push`
