@@ -16,7 +16,10 @@ http {
   server {
     listen 8080;
 
+    allow 127.0.0.0/8;
     allow 10.0.0.0/8;
+    allow 172.16.0.0/12;
+    allow 192.168.0.0/16;
     deny  all;
 
     access_log /var/log/proxy_access.log combined if=$log_ua;
