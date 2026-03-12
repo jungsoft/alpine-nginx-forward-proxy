@@ -1,6 +1,6 @@
-FROM alpine:3.16
+FROM alpine:3.23
 
-ENV NGINX_VERSION 1.25.4
+ENV NGINX_VERSION 1.28.2
 
 RUN apk update && apk add curl gettext bash
 RUN apk add --virtual nginx \

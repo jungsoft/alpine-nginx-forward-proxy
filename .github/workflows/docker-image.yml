@@ -25,4 +25,4 @@ jobs:
         with:
           install: true
       - name: Build and push with Buildx
-        run: docker build --platform linux/amd64,linux/arm64 . --tag jungsoft/alpine-nginx-forward-proxy --tag jungsoft/alpine-nginx-forward-proxy:1.25.4 --push
+        run: docker build --platform linux/amd64,linux/arm64 . --tag jungsoft/alpine-nginx-forward-proxy --tag jungsoft/alpine-nginx-forward-proxy:1.28.2 --push
